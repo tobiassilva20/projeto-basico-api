@@ -1,0 +1,42 @@
+# projeto-basico-api
+Este projeto contém as partes básicas de uma api Rest usando JAVA, SPRING BOOT, HYBERNATE e H2
+
+This project is meant to be a brief example of how the structure of a API should be.
+
+Application is the main class of the project.
+
+CONTROLLER LAYER
+We have a package named controller, where resides all the controllers of the application.
+In this project we've a class called Employee controller, which is a class with the @RestController annotation
+that tells the Spring that this class is responsible for handling HTTP Requests related to the Employees.
+This controller also contains a dependency of an object type EmployeeServiceImpl, that will be detailed ahead.
+The controller has methods mapped to the most common HTTP Requests.
+
+MODEL LAYER
+We also have a package named model which we locate all the Model classes. In this project we have a class called
+Employee that contains a annotation @Entity which tells the Spring that this class must be mapped to a table in the
+database.
+
+REPOSITORY LAYER
+Next we have a package named repository that basically contains a interface called EmployeeRepository.
+This interface extends other interface from JPA Persistence API called JpaRepository which is responsible
+for making the CRUD methods available. The EmployeeRepository interface takes an @Repository annotation.
+
+SERVICE LAYER
+And finally we have a package named service that contains two files. The first is an interface called EmployeeService,
+where all methods for saving and retrieving data will be described. A class named EmployeeServiceImpl that will have
+the implementation of all methods listed in the interface mentioned before. The EmployeeServiceImpl will take an
+annotation @Service to tell Spring that this class is a service provider and will also contain an EmployeeRepository
+instance automatically injected via dependency injection.
+
+This API functions basically by responding a HTTP Request (GET or POST), which will be captured by the controller,
+and will call the service layer, that subsequently will call the repository layer.
+
+So.
+Request:
+HTTP Request -> Controller -> Service layer -> Repository layer
+
+Response:
+Repository layer -> Service layer -> Controller -> Response
+
+source: https://www.geeksforgeeks.org/spring-boot-spring-data-jpa/?ref=rp
